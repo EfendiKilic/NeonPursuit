@@ -6,7 +6,7 @@
             "id": "2529464e-d503-4be4-84b0-9a89badd4a7f",
             "actions": [
                 {
-                    "name": "MenuOpenClose",
+                    "name": "EscControl",
                     "type": "Button",
                     "id": "f0e774ba-168c-4f8b-ada8-12941f8b112f",
                     "expectedControlType": "Button",
@@ -23,7 +23,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard",
-                    "action": "MenuOpenClose",
+                    "action": "EscControl",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -34,7 +34,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
-                    "action": "MenuOpenClose",
+                    "action": "EscControl",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

@@ -1,14 +1,13 @@
-using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class InputManager : MonoBehaviour
 {
     public static InputManager instance;
-    public bool MenuOpenClosetInput { get; private set; }
+    public bool EscControlInput { get; private set; }
 
     private PlayerInput playerInput;
-    private InputAction menuOpenCloseAction;
+    private InputAction EscControl;
     
     private void Awake()
     {
@@ -18,11 +17,11 @@ public class InputManager : MonoBehaviour
         }
         
         playerInput = GetComponent<PlayerInput>();
-        menuOpenCloseAction = playerInput.actions["MenuOpenClose"];
+        EscControl = playerInput.actions["EscControl"];
     }
 
     private void Update()
     {
-        MenuOpenClosetInput = menuOpenCloseAction.WasPressedThisFrame();
+        EscControlInput = EscControl.WasPressedThisFrame();
     }
 }
