@@ -12,6 +12,7 @@ public class MenuManager : MonoBehaviour
     [SerializeField] private GameObject settingsMenuObject;
 
     private bool isPaused;
+    private GameObject lastSelectedButton;
     
     private void Start()
     {
