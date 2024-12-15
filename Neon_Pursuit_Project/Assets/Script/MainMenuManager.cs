@@ -1,6 +1,9 @@
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using UnityEngine.EventSystems;
+using System.Collections.Generic;
+using TMPro;
 
 public class MainMenuManager : MonoBehaviour
 {
@@ -18,15 +21,53 @@ public class MainMenuManager : MonoBehaviour
 
     [Header("Emeği Geçenler Link")]
     public string link;
+
+    [Header("Ayarlar Sekmesi Çözünürlük")]
+    public TMP_Dropdown resolutionDropDown;
+    public Toggle fullScreenToggle;
+    
+    private Resolution[] allResolutions;
+    private bool isFullScreen;
+    private int SelectedResolutions;
+    private List<Resolution> selectedResolutionList = new List<Resolution>();
     
     private void Start()
     {
         OpenMainMenu();
+
+        isFullScreen = true;
+        allResolutions = Screen.resolutions;
+
+        List<string> resolutionStringList = new List<string>();
+        string newRes;
+        foreach (Resolution res in allResolutions)
+        {
+            newRes = res.width.ToString() + " x " + res.height.ToString();
+            if (!resolutionStringList.Contains(newRes))
+            {
+                resolutionStringList.Add(newRes);
+                selectedResolutionList.Add(res);
+            }
+        }
+
+        resolutionDropDown.AddOptions(resolutionStringList);
+    }
+
+
+    public void ChangeResolution()
+    {
+        SelectedResolutions = resolutionDropDown.value;
+        Screen.SetResolution(selectedResolutionList[SelectedResolutions].width, selectedResolutionList[SelectedResolutions].height, isFullScreen);
+    }
+    
+    public void ChangeFullScreen()
+    {
+        isFullScreen = fullScreenToggle.isOn;
+         Screen.SetResolution(selectedResolutionList[SelectedResolutions].width, selectedResolutionList[SelectedResolutions].height, isFullScreen);
     }
     
     private void Update()
     {
-        // InputManager'dan ESC veya Gamepad Start kontrolü
         if (InputManager.instance.EscControlInput)
         {
             HandleMenuClose();
