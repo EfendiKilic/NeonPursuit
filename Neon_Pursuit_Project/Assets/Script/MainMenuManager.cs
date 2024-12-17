@@ -52,8 +52,7 @@ public class MainMenuManager : MonoBehaviour
 
         resolutionDropDown.AddOptions(resolutionStringList);
     }
-
-
+    
     public void ChangeResolution()
     {
         SelectedResolutions = resolutionDropDown.value;
