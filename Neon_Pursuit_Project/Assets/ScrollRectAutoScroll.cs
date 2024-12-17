@@ -53,12 +53,7 @@ public class ScrollRectAutoScroll : MonoBehaviour, IPointerEnterHandler, IPointe
     {
         if (m_Selectables.Count > 0)
         {
-            //remove the rePlayer getaxis calls is you aren't using Rewired
-            //if it still doesn't work, check your input manager settings's axes and make sure they are defined properly
-            //if you're using the new input system, this is also probably where you should replace the calls to the old one
-            {
-                ScrollToSelected(false);
-            }
+            ScrollToSelected(false);
         }
     }
     void ScrollToSelected(bool quickScroll)
