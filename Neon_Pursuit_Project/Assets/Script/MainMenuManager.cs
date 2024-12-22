@@ -31,14 +31,21 @@ public class MainMenuManager : MonoBehaviour
     private bool isFullScreen;
     private int SelectedResolutions;
     private List<Resolution> selectedResolutionList = new List<Resolution>();
-
-
+    
     [Header("Ayarlar Sekmesi Ses")]
     public AudioMixer gameMixer;
     public Slider musicSlider;
     public Slider sfxSlider;
     public Slider masterAudioSlider;
 
+    [Header("Ayarlar Sekmesi Grafik")]
+    public TMP_Dropdown qulityDropDown;
+
+    public void SetQualityLevelDropdown(int index)
+    {
+        QualitySettings.SetQualityLevel(index, false);
+    }
+    
     public void SetMusicVolume()
     {
         float volume = musicSlider.value;
