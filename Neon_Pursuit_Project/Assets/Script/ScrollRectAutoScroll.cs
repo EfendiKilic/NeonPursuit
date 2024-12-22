@@ -2,32 +2,24 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
-//comment the next line out if you aren't using Rewired
 
 [RequireComponent(typeof(ScrollRect))]
 public class ScrollRectAutoScroll : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
+    [Header("Scroll Deðiþkenleri")]
     public float scrollSpeed = 10f;
-    private bool mouseOver = false;
 
+    private bool mouseOver = false;
     private List<Selectable> m_Selectables = new List<Selectable>();
     private ScrollRect m_ScrollRect;
-
     private Vector2 m_NextScrollPosition = Vector2.up;
 
-    void OnEnable()
-    {
-        if (m_ScrollRect)
-        {
-            m_ScrollRect.content.GetComponentsInChildren(m_Selectables);
-        }
-    }
-    void Awake()
+    private void Awake()
     {
         m_ScrollRect = GetComponent<ScrollRect>();
-        //remove this line if not using Rewired
     }
-    void Start()
+
+    private void Start()
     {
         if (m_ScrollRect)
         {
@@ -35,13 +27,20 @@ public class ScrollRectAutoScroll : MonoBehaviour, IPointerEnterHandler, IPointe
         }
         ScrollToSelected(true);
     }
-    void Update()
+
+    private void OnEnable()
     {
-        // Scroll via input.
+        if (m_ScrollRect)
+        {
+            m_ScrollRect.content.GetComponentsInChildren(m_Selectables);
+        }
+    }
+    
+    private void Update()
+    {
         InputScroll();
         if (!mouseOver)
         {
-            // Lerp scrolling code.
             m_ScrollRect.normalizedPosition = Vector2.Lerp(m_ScrollRect.normalizedPosition, m_NextScrollPosition, scrollSpeed * Time.unscaledDeltaTime);
         }
         else
@@ -49,14 +48,14 @@ public class ScrollRectAutoScroll : MonoBehaviour, IPointerEnterHandler, IPointe
             m_NextScrollPosition = m_ScrollRect.normalizedPosition;
         }
     }
-    void InputScroll()
-    {
+    private void InputScroll()
+    { 
         if (m_Selectables.Count > 0)
         {
             ScrollToSelected(false);
         }
     }
-    void ScrollToSelected(bool quickScroll)
+    private void ScrollToSelected(bool quickScroll)
     {
         int selectedIndex = -1;
         Selectable selectedElement = EventSystem.current.currentSelectedGameObject ? EventSystem.current.currentSelectedGameObject.GetComponent<Selectable>() : null;

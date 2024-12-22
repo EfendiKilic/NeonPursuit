@@ -4,6 +4,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.EventSystems;
 using System.Collections.Generic;
 using TMPro;
+using UnityEngine.Audio;
 
 public class MainMenuManager : MonoBehaviour
 {
@@ -30,10 +31,83 @@ public class MainMenuManager : MonoBehaviour
     private bool isFullScreen;
     private int SelectedResolutions;
     private List<Resolution> selectedResolutionList = new List<Resolution>();
-    
+
+
+    [Header("Ayarlar Sekmesi Ses")]
+    public AudioMixer gameMixer;
+    public Slider musicSlider;
+    public Slider sfxSlider;
+    public Slider masterAudioSlider;
+
+    public void SetMusicVolume()
+    {
+        float volume = musicSlider.value;
+        gameMixer.SetFloat("music", Mathf.Log10(volume) * 20);
+        PlayerPrefs.SetFloat("musicVolume", volume);
+    }
+
+    private void loadMusicVolume()
+    {
+        musicSlider.value = PlayerPrefs.GetFloat("musicVolume");
+        SetMusicVolume();
+    }
+
+    public void SetSFXVolume()
+    {
+        float volume = sfxSlider.value;
+        gameMixer.SetFloat("sfx", Mathf.Log10(volume) * 20);
+        PlayerPrefs.SetFloat("sfxVolume", volume);
+    }
+
+    private void loadSFXVolume()
+    {
+        sfxSlider.value = PlayerPrefs.GetFloat("sfxVolume");
+        SetMusicVolume();
+    }
+
+    public void SetMasterVolume()
+    {
+        float volume = masterAudioSlider.value;
+        gameMixer.SetFloat("master", Mathf.Log10(volume) * 20);
+        PlayerPrefs.SetFloat("masterVolume", volume);
+    }
+
+    private void loadMasterVolume()
+    {
+        sfxSlider.value = PlayerPrefs.GetFloat("masterVolume");
+        SetMasterVolume();
+    }
+
+
     private void Start()
     {
         OpenMainMenu();
+        if (PlayerPrefs.HasKey("musicVolume"))
+        {
+            loadMusicVolume();
+        }
+        else
+        {
+            SetMusicVolume();
+        }
+
+        if (PlayerPrefs.HasKey("sfxVolume"))
+        {
+            loadSFXVolume();
+        }
+        else
+        {
+            SetSFXVolume();
+        }
+
+        if (PlayerPrefs.HasKey("masterVolume"))
+        {
+            loadMasterVolume();
+        }
+        else
+        {
+            SetMasterVolume();
+        }
 
         isFullScreen = true;
         allResolutions = Screen.resolutions;
@@ -49,7 +123,6 @@ public class MainMenuManager : MonoBehaviour
                 selectedResolutionList.Add(res);
             }
         }
-
         resolutionDropDown.AddOptions(resolutionStringList);
     }
     
