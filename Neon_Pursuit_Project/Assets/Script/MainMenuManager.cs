@@ -5,6 +5,7 @@ using UnityEngine.EventSystems;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine.Audio;
+using UnityEngine.Localization.Settings;
 
 public class MainMenuManager : MonoBehaviour
 {
@@ -41,6 +42,41 @@ public class MainMenuManager : MonoBehaviour
     [Header("Ayarlar Sekmesi Grafik")]
     public TMP_Dropdown qulityDropDown;
 
+    [Header("Ayarlar Sekmesi Dil")]
+    public TMP_Dropdown languageDropDown;
+
+    private void PopulateDropdown()
+    {
+        // Dropdown'u temizle ve mevcut dillerle doldur
+        languageDropDown.ClearOptions();
+        var options = new System.Collections.Generic.List<string>();
+
+        foreach (var locale in LocalizationSettings.AvailableLocales.Locales)
+        {
+            options.Add(locale.LocaleName); // Locale Name ekle
+        }
+
+        languageDropDown.AddOptions(options);
+
+        // Varsayılan dil seçimi
+        var selectedLocale = LocalizationSettings.SelectedLocale;
+        if (selectedLocale != null)
+        {
+            int index = LocalizationSettings.AvailableLocales.Locales.IndexOf(selectedLocale);
+            languageDropDown.value = index;
+        }
+    }
+
+    private void OnLanguageChanged(int index)
+    {
+        // Dropdown'dan seçilen Locale Name ile eşleşen dili seç
+        var selectedLocale = LocalizationSettings.AvailableLocales.Locales[index];
+        LocalizationSettings.SelectedLocale = selectedLocale;
+
+        Debug.Log("Dil değiştirildi: " + selectedLocale.LocaleName);
+    }
+    
+    
     public void SetQualityLevelDropdown(int index)
     {
         QualitySettings.SetQualityLevel(index, false);
@@ -81,13 +117,17 @@ public class MainMenuManager : MonoBehaviour
 
     private void loadMasterVolume()
     {
-        sfxSlider.value = PlayerPrefs.GetFloat("masterVolume");
+        masterAudioSlider.value = PlayerPrefs.GetFloat("masterVolume");
         SetMasterVolume();
     }
 
 
     private void Start()
     {
+        
+        PopulateDropdown(); // Dropdown'u doldur
+        languageDropDown.onValueChanged.AddListener(OnLanguageChanged); // Listener ekle
+        
         OpenMainMenu();
         if (PlayerPrefs.HasKey("musicVolume"))
         {
