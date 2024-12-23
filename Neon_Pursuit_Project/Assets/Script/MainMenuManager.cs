@@ -44,29 +44,47 @@ public class MainMenuManager : MonoBehaviour
 
     [Header("Ayarlar Sekmesi Dil")]
     public TMP_Dropdown languageDropDown;
+    private const string LanguagePreferenceKey = "SelectedLanguage";
 
-    private void PopulateDropdown()
+    [Header("Ayarlar Sekmesi Tazeleme")]
+    public TMP_Dropdown refreshRateDropdown;
+    private readonly int[] refreshRates = { 30, 60, 120, 144, 240 }; // Dropdown değerleri
+    private const string RefreshRateKey = "MaxRefreshRate"; // PlayerPrefs anahtarı
+
+    #region FPS
+
+    private void PopulateFPSDropdown()
     {
-        // Dropdown'u temizle ve mevcut dillerle doldur
-        languageDropDown.ClearOptions();
-        var options = new System.Collections.Generic.List<string>();
+        refreshRateDropdown.options.Clear(); // Mevcut seçenekleri temizle
 
-        foreach (var locale in LocalizationSettings.AvailableLocales.Locales)
+        foreach (int rate in refreshRates)
         {
-            options.Add(locale.LocaleName); // Locale Name ekle
+            refreshRateDropdown.options.Add(new TMP_Dropdown.OptionData(rate + " FPS"));
         }
 
-        languageDropDown.AddOptions(options);
-
-        // Varsayılan dil seçimi
-        var selectedLocale = LocalizationSettings.SelectedLocale;
-        if (selectedLocale != null)
-        {
-            int index = LocalizationSettings.AvailableLocales.Locales.IndexOf(selectedLocale);
-            languageDropDown.value = index;
-        }
+        refreshRateDropdown.RefreshShownValue(); // Dropdown'u güncelle
     }
 
+    private void UpdateRefreshRate(int index)
+    {
+        int selectedRate = refreshRates[index];
+        ApplyRefreshRate(selectedRate);
+
+        // Ayarı PlayerPrefs ile kaydet
+        PlayerPrefs.SetInt(RefreshRateKey, selectedRate);
+        PlayerPrefs.Save();
+    }
+
+    private void ApplyRefreshRate(int rate)
+    {
+        Application.targetFrameRate = rate; // Yeni ekran tazeleme hızını uygula
+        Debug.Log($"Ekran tazeleme hızı: {rate} FPS olarak ayarlandı.");
+    }
+    
+    #endregion
+    
+    #region Dil
+    
     private void OnLanguageChanged(int index)
     {
         // Dropdown'dan seçilen Locale Name ile eşleşen dili seç
@@ -74,13 +92,23 @@ public class MainMenuManager : MonoBehaviour
         LocalizationSettings.SelectedLocale = selectedLocale;
 
         Debug.Log("Dil değiştirildi: " + selectedLocale.LocaleName);
+        PlayerPrefs.SetString("dil",selectedLocale.LocaleName);
     }
+
     
+    #endregion
+
+    #region Kalite
     
     public void SetQualityLevelDropdown(int index)
     {
         QualitySettings.SetQualityLevel(index, false);
     }
+    
+    #endregion
+
+    #region Ses
+
     
     public void SetMusicVolume()
     {
@@ -121,14 +149,56 @@ public class MainMenuManager : MonoBehaviour
         SetMasterVolume();
     }
 
+    #endregion
 
     private void Start()
     {
+
+        #region FPS
+
+        // Dropdown'a seçenekleri ekle
+        PopulateFPSDropdown();
+
+        // Kayıtlı değeri yükle veya varsayılan değeri kullan
+        int savedRefreshRate = PlayerPrefs.GetInt(RefreshRateKey, 60);
+        int defaultIndex = System.Array.IndexOf(refreshRates, savedRefreshRate);
+
+        if (defaultIndex >= 0 && defaultIndex < refreshRates.Length)
+        {
+            refreshRateDropdown.value = defaultIndex;
+        }
+
+        // Dropdown değiştiğinde metodu bağla
+        refreshRateDropdown.onValueChanged.AddListener(UpdateRefreshRate);
+        ApplyRefreshRate(savedRefreshRate); // Oyun açıldığında ayarı uygula
+        #endregion
+
         
-        PopulateDropdown(); // Dropdown'u doldur
-        languageDropDown.onValueChanged.AddListener(OnLanguageChanged); // Listener ekle
+        #region Dil
+
+        if (PlayerPrefs.HasKey("dil"))
+        {
+            if (PlayerPrefs.GetString("dil") == "Turkish")
+            {
+                languageDropDown.value = 0;
+                Debug.Log("aaaaaa");
+                LocalizationSettings.SelectedLocale = LocalizationSettings.AvailableLocales.Locales[0];
+            }
+            else
+            {
+                languageDropDown.value = 1;
+                Debug.Log("bbbbb");
+                LocalizationSettings.SelectedLocale = LocalizationSettings.AvailableLocales.Locales[1];
+            }
+        }
+        languageDropDown.onValueChanged.AddListener(OnLanguageChanged); 
+        
+        #endregion
         
         OpenMainMenu();
+
+        #region Ses
+
         if (PlayerPrefs.HasKey("musicVolume"))
         {
             loadMusicVolume();
@@ -156,6 +226,10 @@ public class MainMenuManager : MonoBehaviour
             SetMasterVolume();
         }
 
+        #endregion
+
+        #region Çözünürlük
+
         isFullScreen = true;
         allResolutions = Screen.resolutions;
 
@@ -171,6 +245,8 @@ public class MainMenuManager : MonoBehaviour
             }
         }
         resolutionDropDown.AddOptions(resolutionStringList);
+        
+        #endregion
     }
     
     public void ChangeResolution()
