@@ -8,7 +8,11 @@ public class InputManager : MonoBehaviour
 
     private PlayerInput playerInput;
     private InputAction EscControl;
-    
+
+
+    private InputAction AnyKeyAction;
+
+
     private void Awake()
     {
         if (instance == null)
@@ -18,10 +22,17 @@ public class InputManager : MonoBehaviour
         
         playerInput = GetComponent<PlayerInput>();
         EscControl = playerInput.actions["EscControl"];
+
+        AnyKeyAction = playerInput.actions["AnyKey"];
     }
+
+    public bool AnyKeyPressed { get; private set; }
+
 
     private void Update()
     {
         EscControlInput = EscControl.WasPressedThisFrame();
+
+        AnyKeyPressed = AnyKeyAction.WasPressedThisFrame();
     }
 }

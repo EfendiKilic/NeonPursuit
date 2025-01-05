@@ -18,20 +18,84 @@ MonoBehaviour:
   m_Metadata:
     m_Items: []
   m_TableData:
-  - m_Id: 137875488768
+  - m_Id: 119280414720
     m_Localized: Play
     m_Metadata:
       m_Items: []
-  - m_Id: 397968474112
+  - m_Id: 242894942208
     m_Localized: Credits
     m_Metadata:
       m_Items: []
-  - m_Id: 458551001088
+  - m_Id: 320921579520
+    m_Localized: Bye
+    m_Metadata:
+      m_Items: []
+  - m_Id: 430342582272
     m_Localized: Settings
     m_Metadata:
       m_Items: []
-  - m_Id: 643670802432
-    m_Localized: Quit
+  - m_Id: 571145367552
+    m_Localized: Back
+    m_Metadata:
+      m_Items: []
+  - m_Id: 696047546368
+    m_Localized: Are You Sure?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 793804189696
+    m_Localized: Full Screen
+    m_Metadata:
+      m_Items: []
+  - m_Id: 934942519296
+    m_Localized: Resolution
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1040794169344
+    m_Localized: Master V.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1153285402624
+    m_Localized: Music V.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1196730003456
+    m_Localized: Effect V.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1318859747328
+    m_Localized: Graphic
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15366280097792
+    m_Localized: VSync
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2027898449920
+    m_Localized: FPS
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3174537277440
+    m_Localized: Yes
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3285313040384
+    m_Localized: No
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16730150318080
+    m_Localized: Language
+    m_Metadata:
+      m_Items: []
+  - m_Id: 44060642029568
+    m_Localized: Cut Scene V.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2636976989995008
+    m_Localized: Resume
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2637036196790272
+    m_Localized: Menu
     m_Metadata:
       m_Items: []
   references:

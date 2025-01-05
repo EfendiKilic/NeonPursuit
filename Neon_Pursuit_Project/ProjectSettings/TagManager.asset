@@ -41,3 +41,18 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Road
+    uniqueID: 849765455
+    locked: 0
+  - name: Environment
+    uniqueID: 2719560525
+    locked: 0
+  - name: Cars
+    uniqueID: 2109230759
+    locked: 0
+  - name: SpecialCars
+    uniqueID: 2736144005
+    locked: 0
+  - name: Player
+    uniqueID: 643050209
+    locked: 0

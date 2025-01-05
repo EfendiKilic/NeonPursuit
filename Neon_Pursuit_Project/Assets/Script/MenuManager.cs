@@ -4,19 +4,16 @@ using UnityEngine.EventSystems;
 
 public class MenuManager : MonoBehaviour
 {
-    [SerializeField] private GameObject settingsMenu;
     [SerializeField] private GameObject mainMenu;
 
     [Header("First Selected Options")]
     [SerializeField] private GameObject mainMenuObject;
-    [SerializeField] private GameObject settingsMenuObject;
 
     private bool isPaused;
     private GameObject lastSelectedButton;
     
     private void Start()
     {
-        settingsMenu.SetActive(false);
         mainMenu.SetActive(false);
     }
 
@@ -57,38 +54,21 @@ public class MenuManager : MonoBehaviour
 
     private void OpenMainMenu()
     {
-        settingsMenu.SetActive(false);
         mainMenu.SetActive(true);
         EventSystem.current.SetSelectedGameObject(mainMenuObject);
     }
     
-    private void OpenSettingsMenuHandle()
-    {
-        settingsMenu.SetActive(true);
-        mainMenu.SetActive(false);
-        EventSystem.current.SetSelectedGameObject(settingsMenuObject);
-    }
-    
+
     private void CloseAllMenus()
     {
         mainMenu.SetActive(false);
-        settingsMenu.SetActive(false);
     }
     
     #endregion
     
     #region Menu Button Actions
     
-    public void SettingsPress()
-    {
-        OpenSettingsMenuHandle();
-    }
-
-    public void OnSettingsBackPress()
-    {
-        OpenMainMenu();
-    }
-
+    
     public void OnMainMenuPress()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);

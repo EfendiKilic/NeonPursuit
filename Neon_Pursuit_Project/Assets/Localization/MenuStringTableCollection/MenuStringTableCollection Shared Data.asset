@@ -15,30 +15,94 @@ MonoBehaviour:
   m_TableCollectionName: MenuStringTableCollection
   m_TableCollectionNameGuidString: 40f3131a44f75b347aa00bd6e13a9ff8
   m_Entries:
-  - m_Id: 137875488768
+  - m_Id: 119280414720
     m_Key: Key_Play
     m_Metadata:
       m_Items: []
-  - m_Id: 397968474112
+  - m_Id: 242894942208
     m_Key: Key_Credits
     m_Metadata:
       m_Items: []
-  - m_Id: 458551001088
+  - m_Id: 320921579520
+    m_Key: Key_Quit
+    m_Metadata:
+      m_Items: []
+  - m_Id: 430342582272
     m_Key: Key_Settings
     m_Metadata:
       m_Items: []
-  - m_Id: 643670802432
-    m_Key: Key_Quit
+  - m_Id: 571145367552
+    m_Key: Key_Back
+    m_Metadata:
+      m_Items: []
+  - m_Id: 696047546368
+    m_Key: Key_Question
+    m_Metadata:
+      m_Items: []
+  - m_Id: 793804189696
+    m_Key: Key_FullScreen
+    m_Metadata:
+      m_Items: []
+  - m_Id: 934942519296
+    m_Key: Key_Resolution
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1040794169344
+    m_Key: Key_MasterVolume
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1153285402624
+    m_Key: Key_MusicVolume
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1196730003456
+    m_Key: Key_SFXVolume
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1318859747328
+    m_Key: Key_GraphicQuality
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2027898449920
+    m_Key: Key_FPS
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3174537277440
+    m_Key: Key_QuitConfrim
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3285313040384
+    m_Key: Key_QuitDisconfrim
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15366280097792
+    m_Key: Key_VSync
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16730150318080
+    m_Key: Key_Language
+    m_Metadata:
+      m_Items: []
+  - m_Id: 44060642029568
+    m_Key: Key_CutSceneVolume
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2636976989995008
+    m_Key: Key_Resume
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2637036196790272
+    m_Key: Key_Menu
     m_Metadata:
       m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:
-    rid: 3661274185039872025
+    rid: 8919893107150684216
   references:
     version: 2
     RefIds:
-    - rid: 3661274185039872025
+    - rid: 8919893107150684216
       type: {class: DistributedUIDGenerator, ns: UnityEngine.Localization.Tables, asm: Unity.Localization}
       data:
-        m_CustomEpoch: 1734911739516
+        m_CustomEpoch: 1735112101792

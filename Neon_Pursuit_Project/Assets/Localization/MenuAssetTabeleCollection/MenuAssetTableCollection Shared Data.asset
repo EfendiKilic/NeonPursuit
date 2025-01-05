@@ -14,30 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_TableCollectionName: MenuAssetTableCollection
   m_TableCollectionNameGuidString: a839ccb3633ecf142833abafcacf56d6
-  m_Entries:
-  - m_Id: 1294580645888
-    m_Key: Key_Flags
-    m_Metadata:
-      m_Items: []
+  m_Entries: []
   m_Metadata:
-    m_Items:
-    - rid: 3661274185039872031
+    m_Items: []
   m_KeyGenerator:
-    rid: 3661274185039872030
+    rid: 8919893107150684219
   references:
     version: 2
     RefIds:
-    - rid: 3661274185039872030
+    - rid: 8919893107150684219
       type: {class: DistributedUIDGenerator, ns: UnityEngine.Localization.Tables, asm: Unity.Localization}
       data:
-        m_CustomEpoch: 1734912592156
-    - rid: 3661274185039872031
-      type: {class: AssetTypeMetadata, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
-      data:
-        m_Entries:
-        - m_KeyId: 1294580645888
-          m_TableCodes:
-          - en
-          - tr-TR
-        m_TypeString: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
-          Culture=neutral, PublicKeyToken=null
+        m_CustomEpoch: 1735113173727

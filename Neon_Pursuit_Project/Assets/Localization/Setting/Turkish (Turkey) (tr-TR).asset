@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Turkish (Turkey) (tr-TR)
   m_EditorClassIdentifier: 
   m_Identifier:
-    m_Code: tr-TR
+    m_Code: tr
   m_Metadata:
     m_Items: []
   m_LocaleName: Turkish
